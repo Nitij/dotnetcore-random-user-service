@@ -1,0 +1,6 @@
+@RandomUserService_HostAddress = http://localhost:5232
+
+GET {{RandomUserService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
