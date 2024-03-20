@@ -7,11 +7,12 @@ var basicAuthSettings = builder.Configuration.GetSection("BasicAuth").Get<BasicA
 builder.Services.AddSingleton(basicAuthSettings);
 
 // Add services to the container.
+var corsSettings = builder.Configuration.GetSection("Cors").Get<CorsSettings>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "CustomOrigins",
         builder =>
-        { builder.WithOrigins(["http://localhost:3000"]).AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
+        { builder.WithOrigins(corsSettings.AllowedOrigins).AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
 });
 
 builder.Services.AddControllers();
